@@ -1,0 +1,6 @@
+{
+  "name": "Al Raheem College of Nursing",
+  "description": "Official institutional portal for Al Raheem College of Nursing Kot Addu, offering BS Nursing (4 Years), LHV (2 Years Diploma), specialized healthcare digital skills, and external vocational skill certifications.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
