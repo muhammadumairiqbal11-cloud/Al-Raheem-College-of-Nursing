@@ -505,9 +505,25 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
 
 
 
-      {/* SECTION 4 — INSTITUTIONAL HIGHLIGHTS */}
-      <section className="bg-light-bg dark:bg-navy-900/40 py-12 sm:py-16 border-y border-border-med dark:border-navy-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+      {/* SECTION 4 — ACADEMIC & CAMPUS HIGHLIGHTS */}
+      <section 
+        id="academic-campus-highlights"
+        className="relative py-16 sm:py-24 border-y border-border-med dark:border-navy-800 overflow-hidden"
+      >
+        {/* Full Section Background Image Layer with Calibrated Visible Presence */}
+        <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none select-none">
+          <img
+            src={heroImg}
+            alt="Al-Raheem College of Nursing Campus"
+            referrerPolicy="no-referrer"
+            className="w-full h-full object-cover object-center"
+          />
+          {/* Subtle Tone Overlays: Keeps the campus building and grounds clearly identifiable behind the content while protecting text legibility */}
+          <div className="absolute inset-0 bg-white/70 dark:bg-navy-950/80 backdrop-blur-[0.5px]"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-white/80 via-transparent to-white/80 dark:from-navy-950/85 dark:via-transparent dark:to-navy-950/85"></div>
+        </div>
+
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6">
           <SectionHeader
             badge="Institutional Structure"
             title="Factual Academic & Campus Highlights"
@@ -516,50 +532,50 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             
-            <div className="bg-white dark:bg-navy-900 p-5 rounded-xl border border-border-med dark:border-navy-800 space-y-2 shadow-xs">
-              <div className="w-10 h-10 rounded-lg bg-navy-100 dark:bg-navy-800 flex items-center justify-center text-navy-900 dark:text-sand-400">
+            <div className="bg-white/90 dark:bg-navy-900/90 backdrop-blur-md p-6 rounded-2xl border-2 border-border-med/90 dark:border-navy-800 space-y-3 shadow-md hover:shadow-xl hover:border-navy-700 dark:hover:border-sand-500 transition-all duration-200">
+              <div className="w-11 h-11 rounded-xl bg-navy-100 dark:bg-navy-800 flex items-center justify-center text-navy-900 dark:text-sand-400 shadow-xs">
                 <Clock className="w-5 h-5" />
               </div>
-              <h4 className="font-bold text-navy-900 dark:text-white text-sm font-serif">
+              <h4 className="font-bold text-navy-900 dark:text-white text-base font-serif">
                 16–18 Weeks Semester
               </h4>
-              <p className="text-xs text-secondary-text dark:text-slate-300 leading-relaxed">
+              <p className="text-xs sm:text-sm text-secondary-text dark:text-slate-300 leading-relaxed">
                 Standardized semester duration with balanced credit hour allocation per course.
               </p>
             </div>
 
-            <div className="bg-white dark:bg-navy-900 p-5 rounded-xl border border-border-med dark:border-navy-800 space-y-2 shadow-xs">
-              <div className="w-10 h-10 rounded-lg bg-navy-100 dark:bg-navy-800 flex items-center justify-center text-navy-900 dark:text-sand-400">
+            <div className="bg-white/90 dark:bg-navy-900/90 backdrop-blur-md p-6 rounded-2xl border-2 border-border-med/90 dark:border-navy-800 space-y-3 shadow-md hover:shadow-xl hover:border-navy-700 dark:hover:border-sand-500 transition-all duration-200">
+              <div className="w-11 h-11 rounded-xl bg-navy-100 dark:bg-navy-800 flex items-center justify-center text-navy-900 dark:text-sand-400 shadow-xs">
                 <Layers className="w-5 h-5" />
               </div>
-              <h4 className="font-bold text-navy-900 dark:text-white text-sm font-serif">
+              <h4 className="font-bold text-navy-900 dark:text-white text-base font-serif">
                 Practical Skills Labs
               </h4>
-              <p className="text-xs text-secondary-text dark:text-slate-300 leading-relaxed">
+              <p className="text-xs sm:text-sm text-secondary-text dark:text-slate-300 leading-relaxed">
                 Hands-on practical, skills/lab, and clinical components integrated into curriculum.
               </p>
             </div>
 
-            <div className="bg-white dark:bg-navy-900 p-5 rounded-xl border border-border-med dark:border-navy-800 space-y-2 shadow-xs">
-              <div className="w-10 h-10 rounded-lg bg-navy-100 dark:bg-navy-800 flex items-center justify-center text-navy-900 dark:text-sand-400">
+            <div className="bg-white/90 dark:bg-navy-900/90 backdrop-blur-md p-6 rounded-2xl border-2 border-border-med/90 dark:border-navy-800 space-y-3 shadow-md hover:shadow-xl hover:border-navy-700 dark:hover:border-sand-500 transition-all duration-200">
+              <div className="w-11 h-11 rounded-xl bg-navy-100 dark:bg-navy-800 flex items-center justify-center text-navy-900 dark:text-sand-400 shadow-xs">
                 <Activity className="w-5 h-5" />
               </div>
-              <h4 className="font-bold text-navy-900 dark:text-white text-sm font-serif">
+              <h4 className="font-bold text-navy-900 dark:text-white text-base font-serif">
                 Annual Sports Gala
               </h4>
-              <p className="text-xs text-secondary-text dark:text-slate-300 leading-relaxed">
+              <p className="text-xs sm:text-sm text-secondary-text dark:text-slate-300 leading-relaxed">
                 "Annual Sports Gala is conducted every year on a regular basis" for student activities.
               </p>
             </div>
 
-            <div className="bg-white dark:bg-navy-900 p-5 rounded-xl border border-border-med dark:border-navy-800 space-y-2 shadow-xs">
-              <div className="w-10 h-10 rounded-lg bg-navy-100 dark:bg-navy-800 flex items-center justify-center text-navy-900 dark:text-sand-400">
+            <div className="bg-white/90 dark:bg-navy-900/90 backdrop-blur-md p-6 rounded-2xl border-2 border-border-med/90 dark:border-navy-800 space-y-3 shadow-md hover:shadow-xl hover:border-navy-700 dark:hover:border-sand-500 transition-all duration-200">
+              <div className="w-11 h-11 rounded-xl bg-navy-100 dark:bg-navy-800 flex items-center justify-center text-navy-900 dark:text-sand-400 shadow-xs">
                 <MapPin className="w-5 h-5" />
               </div>
-              <h4 className="font-bold text-navy-900 dark:text-white text-sm font-serif">
+              <h4 className="font-bold text-navy-900 dark:text-white text-base font-serif">
                 Kot Addu Main Campus
               </h4>
-              <p className="text-xs text-secondary-text dark:text-slate-300 leading-relaxed">
+              <p className="text-xs sm:text-sm text-secondary-text dark:text-slate-300 leading-relaxed">
                 Located at Bukhari Road Near Phattay Wali Pull, Tehsil & District Kot Addu.
               </p>
             </div>
