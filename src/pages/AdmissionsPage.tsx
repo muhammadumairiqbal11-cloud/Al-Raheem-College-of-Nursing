@@ -14,6 +14,53 @@ import {
   GraduationCap 
 } from 'lucide-react';
 
+// Helper function to get current local date in YYYY-MM-DD format
+const getTodayDateString = (): string => {
+  const today = new Date();
+  const yyyy = today.getFullYear();
+  const mm = String(today.getMonth() + 1).padStart(2, '0');
+  const dd = String(today.getDate()).padStart(2, '0');
+  return `${yyyy}-${mm}-${dd}`;
+};
+
+// Date-based completed age calculation formula
+const calculateAge = (dobStr: string, appDateStr: string): string => {
+  if (!dobStr || !appDateStr) return '';
+
+  const dobParts = dobStr.split('-').map(Number);
+  const appParts = appDateStr.split('-').map(Number);
+
+  if (dobParts.length !== 3 || appParts.length !== 3) return '';
+  const [birthYear, birthMonth, birthDay] = dobParts;
+  const [appYear, appMonth, appDay] = appParts;
+
+  if (
+    isNaN(birthYear) || isNaN(birthMonth) || isNaN(birthDay) ||
+    isNaN(appYear) || isNaN(appMonth) || isNaN(appDay)
+  ) {
+    return '';
+  }
+
+  // Future DOB protection: if Date of Birth is later than Application Date
+  if (
+    birthYear > appYear ||
+    (birthYear === appYear && birthMonth > appMonth) ||
+    (birthYear === appYear && birthMonth === appMonth && birthDay > appDay)
+  ) {
+    return '';
+  }
+
+  let age = appYear - birthYear;
+
+  // If the Application Month/Day is BEFORE the Birth Month/Day, age = age - 1
+  if (appMonth < birthMonth || (appMonth === birthMonth && appDay < birthDay)) {
+    age -= 1;
+  }
+
+  if (age < 0) return '';
+  return age.toString();
+};
+
 export const AdmissionsPage: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'checklist' | 'form'>('form');
   const [submitted, setSubmitted] = useState(false);
@@ -22,6 +69,7 @@ export const AdmissionsPage: React.FC = () => {
   const [formData, setFormData] = useState({
     forClass: 'BS Nursing (4 Years)',
     session: '2025–2029',
+    applicationDate: getTodayDateString(),
     candidateName: '',
     fatherName: '',
     dob: '',
@@ -52,7 +100,16 @@ export const AdmissionsPage: React.FC = () => {
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    setFormData(prev => {
+      const updated = { ...prev, [name]: value };
+      if (name === 'dob' || name === 'applicationDate') {
+        const nextDob = name === 'dob' ? value : updated.dob;
+        const nextAppDate = name === 'applicationDate' ? value : updated.applicationDate;
+        updated.age = calculateAge(nextDob, nextAppDate);
+      }
+      return updated;
+    });
   };
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -213,10 +270,11 @@ export const AdmissionsPage: React.FC = () => {
                     Date
                   </label>
                   <input
-                    type="text"
-                    value={new Date().toLocaleDateString()}
-                    readOnly
-                    className="w-full text-xs p-2.5 rounded-lg border border-border-med dark:border-navy-800 bg-light-bg dark:bg-navy-900 text-slate-500 font-mono"
+                    type="date"
+                    name="applicationDate"
+                    value={formData.applicationDate}
+                    onChange={handleChange}
+                    className="w-full text-xs p-2.5 rounded-lg border border-border-med dark:border-navy-700 bg-white dark:bg-navy-950 text-navy-900 dark:text-white font-medium"
                   />
                 </div>
               </div>
@@ -273,9 +331,9 @@ export const AdmissionsPage: React.FC = () => {
                       type="text"
                       name="age"
                       value={formData.age}
-                      onChange={handleChange}
-                      placeholder="e.g. 18 Years"
-                      className="w-full p-2.5 rounded-lg border border-border-med dark:border-navy-700 bg-white dark:bg-navy-950 text-navy-900 dark:text-white"
+                      readOnly
+                      placeholder="Auto-calculated"
+                      className="w-full p-2.5 rounded-lg border border-border-med dark:border-navy-700 bg-light-bg dark:bg-navy-900 text-navy-900 dark:text-white font-medium cursor-not-allowed"
                     />
                   </div>
 

@@ -40,6 +40,19 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
       
       {/* SECTION 1 — HERO SECTION */}
       <section className="relative bg-gradient-to-br from-navy-950 via-navy-900 to-navy-950 text-white pt-12 pb-16 sm:pt-20 sm:pb-28 overflow-hidden">
+        {/* Full Hero Atmospheric Background Image Layer */}
+        <div className="absolute inset-0 z-0 opacity-20 pointer-events-none select-none overflow-hidden">
+          <img
+            src={heroImg}
+            alt=""
+            aria-hidden="true"
+            referrerPolicy="no-referrer"
+            className="w-full h-full object-cover object-center"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-navy-950 via-navy-950/85 to-navy-950/50"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-navy-950 via-transparent to-navy-950"></div>
+        </div>
+
         {/* Background Decorative Lighting */}
         <div className="absolute top-0 right-0 w-96 h-96 bg-sand-500/10 rounded-full blur-3xl pointer-events-none"></div>
         <div className="absolute bottom-0 left-0 w-96 h-96 bg-navy-600/15 rounded-full blur-3xl pointer-events-none"></div>
